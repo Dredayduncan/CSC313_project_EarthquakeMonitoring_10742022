@@ -5,6 +5,8 @@ public class MonitoringI_O {
 
         // Declaration of input variables
         Scanner input = new Scanner(System.in);
+        Scanner reply = new Scanner(System.in);
+
         int valueOption;
 
         // menu printout on the console
@@ -18,6 +20,7 @@ public class MonitoringI_O {
         System.out.println("|  (4) Use the app                                                     |");
         System.out.println("|  (5) Exit                                                            |");
 
+
         // receives input from the user as a value that selects the option
         System.out.print("|Enter option number: ");
         valueOption = input.nextInt();
@@ -26,10 +29,25 @@ public class MonitoringI_O {
         while (valueOption != 0){
 
             if(valueOption == 1){
+                System.out.print("Enter observatory name: ");
+                String name = reply.nextLine();
+                System.out.print("Enter country name: ");
+                String countryName = reply.nextLine();
+                System.out.print("Enter year commenced: ");
+                int yearCommenced = reply.nextInt();
+                System.out.print("Enter area covered in km: ");
+                int area = reply.nextInt();
+
+
+
 
             }
 
             if(valueOption == 2){
+                System.out.print("Enter longitude: ");
+                System.out.print("Enter latitude: ");
+                System.out.print();
+                System.out.print();
 
             }
 
