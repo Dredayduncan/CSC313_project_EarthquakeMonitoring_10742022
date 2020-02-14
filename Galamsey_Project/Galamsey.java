@@ -86,6 +86,22 @@ public class Galamsey {
 
     /**
      *
+     * @return The longitude value of the Galamsey location
+     */
+    public double getLongitude(){
+        return position[0];
+    }
+
+    /**
+     *
+     * @return The latitude value of the Galamsey location
+     */
+    public double getLatitude(){
+        return position[1];
+    }
+
+    /**
+     *
      * @param longitude
      * @param latitude
      * sets the latitude and longitude of the galamsey occurence
