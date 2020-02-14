@@ -2,8 +2,6 @@ package Galamsey_Project;
 
 import java.sql.*;
 import java.util.*;
-import java.util.Date;
-
 
 public class Observatory {
 
@@ -15,7 +13,7 @@ public class Observatory {
     // Instance variables for the Observatory class
     private String name;
     private String country;
-    private Date startYear;
+    private int startYear;
     private int area_covered_km;
     ArrayList<String> galamseys = new ArrayList<>();
 
@@ -29,7 +27,7 @@ public class Observatory {
         }
     }
 
-    public Observatory(String observatory_name, String country_name, Date year_commenced, int area_covered_km){
+    public Observatory(String observatory_name, String country_name, int year_commenced, int area_covered_km){
         name = observatory_name;
         country = country_name;
         startYear = year_commenced;
@@ -66,11 +64,11 @@ public class Observatory {
         this.country = country;
     }
 
-    public Date getStartYear() {
+    public int getStartYear() {
         return startYear;
     }
 
-    public void setStartYear(Date startYear) {
+    public void setStartYear(int startYear) {
         this.startYear = startYear;
     }
 
