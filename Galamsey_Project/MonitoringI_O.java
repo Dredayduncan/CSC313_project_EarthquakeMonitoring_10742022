@@ -45,13 +45,19 @@ public class MonitoringI_O {
 
             if(valueOption == 2){
                 System.out.print("Enter longitude: ");
+                double longitude = reply.nextDouble();
                 System.out.print("Enter latitude: ");
-                System.out.print();
-                System.out.print();
+                double latitude = reply.nextDouble();
+                System.out.print("Enter vegetation colour: ");
+                String vegetationCol = reply.nextLine();
+                System.out.print("Enter year: ");
+                int year = reply.nextInt();
 
             }
 
             if(valueOption == 3){
+                System.out.println("The observatory with the largest average galamsey color value is: " + largeAvgColObsVal );
+                System.out.println("Statistics on largest 'galamsey' ever is ");
 
             }
 
