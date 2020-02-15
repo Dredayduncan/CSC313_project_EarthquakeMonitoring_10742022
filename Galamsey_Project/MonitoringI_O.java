@@ -45,6 +45,7 @@ public class MonitoringI_O {
 
             }
 
+<<<<<<< HEAD
             else if(valueOption == 2){
                 if (observatories.isEmpty()){
                 System.out.println("Error: Cannot add galamsey when no observatory exists.");
@@ -69,6 +70,24 @@ public class MonitoringI_O {
 
             else if(valueOption == 3){
                 System.out.println("The observatory with the largest average galamsey color value is: ");
+=======
+            if(valueOption == 2){
+                System.out.print("Enter longitude: ");
+                double longitude = reply.nextDouble();
+                System.out.print("Enter latitude: ");
+                double latitude = reply.nextDouble();
+                System.out.print("Enter vegetation colour (GREEN, YELLOW or BROWN): ");
+                String vegetationCol = reply.nextLine();
+                System.out.print("Enter year: ");
+                int year = reply.nextInt();
+                Galamsey_Project.Galamsey event = new Galamsey_Project.Galamsey(longitude, latitude,
+                        Galamsey_Project.Galamsey.Vegetation_color.valueOf(vegetationCol.toUpperCase()), year);
+
+            }
+
+            if(valueOption == 3){
+                System.out.println("The observatory with the largest average galamsey color value is: " );
+>>>>>>> 038b1d13af77856bf7295d9207f23df75b787cf7
                 System.out.println("Statistics on largest 'galamsey' ever is ");
 
             }
