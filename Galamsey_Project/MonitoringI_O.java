@@ -48,15 +48,17 @@ public class MonitoringI_O {
                 double longitude = reply.nextDouble();
                 System.out.print("Enter latitude: ");
                 double latitude = reply.nextDouble();
-                System.out.print("Enter vegetation colour: ");
+                System.out.print("Enter vegetation colour (GREEN, YELLOW or BROWN): ");
                 String vegetationCol = reply.nextLine();
                 System.out.print("Enter year: ");
                 int year = reply.nextInt();
+                Galamsey_Project.Galamsey event = new Galamsey_Project.Galamsey(longitude, latitude,
+                        Galamsey_Project.Galamsey.Vegetation_color.valueOf(vegetationCol.toUpperCase()), year);
 
             }
 
             if(valueOption == 3){
-                System.out.println("The observatory with the largest average galamsey color value is: " + largeAvgColObsVal );
+                System.out.println("The observatory with the largest average galamsey color value is: " );
                 System.out.println("Statistics on largest 'galamsey' ever is ");
 
             }
