@@ -13,7 +13,7 @@ public class GalaGUI extends Application {
     public void start(Stage primStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Galamsey FX.fxml"));
         primStage.setTitle("Galamsey Records");
-        primStage.setScene(new Scene(root, 1180, 790));
+        primStage.setScene(new Scene(root,1009, 695));
         primStage.show();
     }
 
