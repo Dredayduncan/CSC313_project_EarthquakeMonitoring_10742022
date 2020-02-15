@@ -11,7 +11,7 @@ public class GalaGUI extends Application {
 
     @Override
     public void start(Stage primStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/CSC313_project_EarthquakeMonitoring_10742022.Galamsey_Project.Galamsey FX.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Galamsey FX.fxml"));
         primStage.setTitle("Galamsey Records");
         primStage.setScene(new Scene(root, 1180, 790));
         primStage.show();
