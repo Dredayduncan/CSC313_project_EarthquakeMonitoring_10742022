@@ -136,30 +136,6 @@ public class Observatory {
         this.area_covered_km = area_covered_km;
     }
 
-    /**
-     *
-     * @param event
-     * This method adds galamsey events to the Galamsey table in the mysql database
-     */
-    public void addEvent(Galamsey_Project.Galamsey event){
-        if (event.getVeg_col_value() > 3)
-            System.out.println("Input Error: Invalid color value");
-        else {
-            try {
-                String query = "insert into Galamsey values("
-                        + event.getVegetation_color() + ", "
-                        + event.getVeg_col_value() + ", "
-                        + event.getLongitude() + ", "
-                        + event.getLatitude() + ", "
-                        + event.getYear() + ", "
-                        + getName() + ")";
-
-                rs = st.executeQuery(query);
-            } catch (Exception e) {
-                System.out.println("Error: " + e);
-            }
-        }
-    }
 
     /**
      *
