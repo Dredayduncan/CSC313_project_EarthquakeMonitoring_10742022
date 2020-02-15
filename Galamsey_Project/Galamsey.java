@@ -1,5 +1,11 @@
 package Galamsey_Project;
 
+/**
+ * @author Stephen Torku
+ * This class takes in information about the various possible occurrences of galamsey
+ * and stores them in a mysql database
+ */
+
 public class Galamsey {
     public static enum Vegetation_color{GREEN, YELLOW, BROWN};
     private Vegetation_color vegetation_color;
