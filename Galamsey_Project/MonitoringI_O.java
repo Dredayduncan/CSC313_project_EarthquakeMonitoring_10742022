@@ -6,6 +6,7 @@ import java.util.Scanner;
  * @author Nana Osei Somuah, Andrew Duncan, Caleb Otchi, Stephen Torku
  */
 public class MonitoringI_O {
+
     public static void main(String[] args) {
 
         ArrayList<String> observatories = new ArrayList<>(); //arraylist to store the various observatories
@@ -52,6 +53,7 @@ public class MonitoringI_O {
                 observatories.add(obs.getName());
                 break;
 
+
             //Case 2 takes in the details of the galamsey
             case  2:
                 //ensures that at least one observatory data has been inputted before galamsey can be added
@@ -59,6 +61,16 @@ public class MonitoringI_O {
                     System.out.println("Error: Cannot add galamsey when no observatory exists.");
 
                 } else {
+
+            }
+            else if(valueOption == 2){
+                if (observatories.isEmpty()){
+                System.out.println("Error: Cannot add galamsey when no observatory exists.");
+                break;
+                }
+                else {
+                    System.out.println(observatories.toString());
+
                     System.out.print("Enter longitude: ");
                     double longitude = reply.nextDouble();
                     System.out.print("Enter latitude: ");
@@ -75,8 +87,9 @@ public class MonitoringI_O {
                 break;
 
 
-            else if(valueOption == 3){
+            else if(valueOption == 3) {
                 System.out.println("The observatory with the largest average galamsey color value is: ");
+
 
 
 
@@ -110,6 +123,10 @@ public class MonitoringI_O {
             case 4:
 
 
+            }
+            else if(valueOption == 4){
+
+
          //case 5 allows the user to exit
             case 5:
                 System.out.println("Exiting...");
@@ -126,5 +143,8 @@ public class MonitoringI_O {
 
         }
     }
+
+
+}
 
 }
