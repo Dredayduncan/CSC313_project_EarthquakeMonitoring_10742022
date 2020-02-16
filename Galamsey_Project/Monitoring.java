@@ -1,4 +1,5 @@
-package Galamsey_Project;
+package CSC313_project_EarthquakeMonitoring_10742022.Galamsey_Project;
+// package Galamsey_Project
 /**
  * @author Andrew Duncan
  * This class is meant to gather various data from the all galamsey events recorded
@@ -23,7 +24,7 @@ public class Monitoring {
      * @return Does not return anything
      * This method is responsible for connecting the class to the mysql database.
      */
-    public void DBConnect(){
+    public void Monitoring(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver"); //This accesses the driver necessary to access the mysql.
 
@@ -145,6 +146,42 @@ public class Monitoring {
             System.out.println("Error: " + e);
         }
         return observatory;
+    }
+
+    public ArrayList getallObs(){
+        ArrayList<String[]> observatories = new ArrayList<>();
+        try {
+            String query = "Select * from Observatories";
+            rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                String[] recs = {rs.getString("obs_name"), rs.getString("country"),
+                        rs.getString("startYear"), rs.getString("area_in_sqkm"),
+                        rs.getString("averageColValue")};
+                observatories.add(recs);
+            }
+        }catch (Exception e){
+            System.out.println("Error: " + e);
+        }
+        return observatories;
+    }
+
+    public ArrayList getallGal(){
+        ArrayList<String[]> gals = new ArrayList<>();
+        try {
+            String query = "Select * from Galamsey";
+            rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                String[] recs = {rs.getString("veg_color"), rs.getString("col_value"),
+                        rs.getString("longitude"), rs.getString("latitude"),
+                        rs.getString("year"), rs.getString("obs_name")};
+                gals.add(recs);
+            }
+        }catch (Exception e){
+            System.out.println("Error: " + e);
+        }
+        return gals;
     }
 
 }

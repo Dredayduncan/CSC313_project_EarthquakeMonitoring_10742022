@@ -10,7 +10,7 @@ public class Galamsey {
     // instance variables for the mysql database connection
     private Connection conn;
     private Statement st;
-    private ResultSet rs;
+    private int rs;
 
     //instance variables to represent galamsey attributes
     public static enum Vegetation_color{GREEN, YELLOW, BROWN};
@@ -19,23 +19,6 @@ public class Galamsey {
     double [] position = new double[2]; // array to store the longitude and latitude
     private int occurYear;
     private String obsName;
-
-    /**
-     * @return Does not return anything
-     * This method is responsible for connecting the class to the mysql database.
-     */
-    public void DBConnect(){
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver"); //This accesses the driver necessary to access the mysql.
-
-            //conn gets the details necessary for the connection to the mysql database.
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Galamsey_data","root","");
-
-            st = conn.createStatement(); // Enables queries to be executed
-        } catch(Exception e){
-            System.out.println("Error: " + e);
-        }
-    }
 
     /**
      *
@@ -53,23 +36,28 @@ public class Galamsey {
         occurYear = year;
         veg_col_value = setColVal(vegetation_color);
         this.vegetation_color = vegetation_color;
-        //The code below adds galamsey events to the Galamsey table in the mysql database
-        if (veg_col_value > 3)
-            System.out.println("Input Error: Invalid color value");
-        else {
-            try {
-                String query = "insert into Galamsey values("
-                        + vegetation_color + ", "
-                        + veg_col_value+ ", "
-                        + position[0] + ", "
-                        + position[1] + ", "
-                        + occurYear + ", "
-                        + obsName + ")";
+        this.obsName = obsName;
 
-                rs = st.executeQuery(query);
-            } catch (Exception e) {
-                System.out.println("Error: " + e);
-            }
+        //The following code registers and connect the class to the mysql Database
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver"); //This accesses the driver necessary to access the mysql.
+
+            //conn gets the details necessary for the connection to the mysql database.
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Galamsey_data","root","");
+
+            st = conn.createStatement(); // Enables queries to be executed
+        } catch(Exception e){
+            System.out.println("Error: " + e);
+        }
+
+        //The code below adds galamsey events to the Galamsey table in the mysql database
+        try {
+            String query = "insert into Galamsey values('"+this.vegetation_color+"','"+veg_col_value+"','"+position[0]
+                    +"','"+position[1]+"','"+occurYear+"','"+this.obsName+"')";
+
+            rs = st.executeUpdate(query);
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
         }
     }
 
