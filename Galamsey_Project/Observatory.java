@@ -54,11 +54,11 @@ public class Observatory {
 
         //the lines of code below is used to insert the user's input into the Observatory table in mysql
         try {
-            String query = "insert into Observatory values (" + getName() + ", "
-                    + getCountry() + ", "
-                    + getArea_covered_km() + ", "
-                    + getStartYear() + ", "
-                    + "null"
+            String query = "insert into Observatory values (" + name + ", "
+                    + country + ", "
+                    + this.area_covered_km + ", "
+                    + startYear + ", "
+                    + "0"
                     + ")";
 
 
