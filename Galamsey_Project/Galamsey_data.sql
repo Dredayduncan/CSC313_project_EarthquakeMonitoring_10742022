@@ -12,7 +12,7 @@ create table Observatory(
 );
 
 create table Galamsey(
-	veg_color enum("Green", "'Yellow", "Brown"),
+	veg_color enum("GREEN", "'YELLOW", "BROWN"),
     col_value tinyint not null,
     longitude decimal,
     latitude decimal,

@@ -20,24 +20,8 @@ public class Observatory {
     private String name;
     private String country;
     private int startYear;
-    private int area_covered_km;
+    private double area_covered_km;
     ArrayList<String> galamseys = new ArrayList<>(); //List of all the Galamseys recorded in the database.
-
-    /**
-     * @return Does not return anything
-     * This method is responsible for connecting the class to the mysql database.
-     */
-    public void DBConnect(){
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver"); //This accesses the driver necessary to access the mysql.
-
-            //conn gets the details necessary for the connection to the mysql database.
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Galamsey_data","root","");
-            st = conn.createStatement();// Enables queries to be executed
-        } catch(Exception e){
-            System.out.println("Error: " + e);
-        }
-    }
 
     /**
      *
@@ -46,23 +30,31 @@ public class Observatory {
      * @param year_commenced variable that stores the year the galamsey observation started
      * @param area_covered_km variable that stores the area of the galamsey location in square kilometers
      */
-    public Observatory(String observatory_name, String country_name, int year_commenced, int area_covered_km){
+    public Observatory(String observatory_name, String country_name, int year_commenced, double area_covered_km) {
         name = observatory_name;
         country = country_name;
         startYear = year_commenced;
         this.area_covered_km = area_covered_km;
 
+        //The following code registers and connect the class to the mysql Database
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver"); //This accesses the driver necessary to access the mysql.
+
+            //conn gets the details necessary for the connection to the mysql database.
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Galamsey_data", "root", "");
+            st = conn.createStatement();// Enables queries to be executed
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+
         //the lines of code below is used to insert the user's input into the Observatory table in mysql
         try {
-            String query = "insert into Observatory values (" + name + ", "
-                    + country + ", "
-                    + this.area_covered_km + ", "
-                    + startYear + ", "
-                    + "0"
-                    + ")";
+
+            String query = "insert into Observatory values ('"+name+"','"+country+"','"+this.area_covered_km+"','"
+                    +startYear+"','"+0+"')";
 
 
-            rs = st.executeQuery(query);
+            int status = st.executeUpdate(query);
         }catch(Exception e){
             System.out.println("Error: " + e);
         }
@@ -123,7 +115,7 @@ public class Observatory {
      *
      * @return returns the area covered by the galamsey in square kilometres
      */
-    public int getArea_covered_km() {
+    public double getArea_covered_km() {
         return area_covered_km;
     }
 

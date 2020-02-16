@@ -47,7 +47,7 @@ public class MonitoringI_O {
                 System.out.print("Enter year commenced: ");
                 int yearCommenced = reply.nextInt();
                 System.out.print("Enter area covered in km: ");
-                int area = reply.nextInt();
+                double area = reply.nextDouble();
                 System.out.println("Observatory added!");
                 Galamsey_Project.Observatory obs = new Galamsey_Project.Observatory(name, countryName, yearCommenced, area);
                 observatories.add(obs.getName());
@@ -81,7 +81,7 @@ public class MonitoringI_O {
                     int year = reply.nextInt();
                     System.out.println("Which observatory collected this information? " + observatories.toString() + "?");
                     String obsName = reply.nextLine();
-                    Galamsey_Project.Galamsey gal = new Galamsey_Project.Galamsey(longitude, latitude,
+                    Galamsey_Project.Galamsey event = new Galamsey_Project.Galamsey(longitude, latitude,
                             Galamsey_Project.Galamsey.Vegetation_color.valueOf(vegetationCol.toUpperCase()), year, obsName);
                 }
                 break;
