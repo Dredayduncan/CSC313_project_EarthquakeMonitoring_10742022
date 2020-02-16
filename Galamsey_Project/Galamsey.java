@@ -18,7 +18,7 @@ public class Galamsey {
     private int veg_col_value;
     double [] position = new double[2]; // array to store the longitude and latitude
     private int occurYear;
-    private String obsName;
+    private String observName;
 
     /**
      * @return Does not return anything
@@ -43,6 +43,7 @@ public class Galamsey {
      * @param latitude
      * @param vegetation_color
      * @param year
+     * @param obsName
      *
      * This creates an object which stores the location where there may be galamsey, the vegetation colour at that location
      * and the year in which this occurs
@@ -51,6 +52,7 @@ public class Galamsey {
         position[0] = longitude;
         position[1] = latitude;
         occurYear = year;
+        observName = obsName;
         veg_col_value = setColVal(vegetation_color);
         this.vegetation_color = vegetation_color;
         //The code below adds galamsey events to the Galamsey table in the mysql database
