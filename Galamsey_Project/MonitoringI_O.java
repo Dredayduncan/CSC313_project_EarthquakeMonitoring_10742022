@@ -1,4 +1,6 @@
 package Galamsey_Project;
+import CSC313_project_EarthquakeMonitoring_10742022.Galamsey_Project.Monitoring;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,15 +10,12 @@ import java.util.Scanner;
 public class MonitoringI_O {
 
     public static void main(String[] args) {
+        Monitoring data = new Monitoring();
 
-        ArrayList<String> observatories = new ArrayList<>(); //arraylist to store the various observatories
-        // Declaration of input variables
+        // Declaration of input variables for the menu and information respectively.
         Scanner input = new Scanner(System.in);
         Scanner reply = new Scanner(System.in);
 
-//        boolean mainLoop = true;
-
-        int valueOption;
 
         // menu printout on the console
     while(true){
@@ -27,116 +26,81 @@ public class MonitoringI_O {
         System.out.println("|  (3) Provide monitoring statistics on largest average 'galamsey',    |");
         System.out.println("|      largest 'galamsey' ever and all 'galamsey' with colour          |");
         System.out.println("|      value greater than given number                                 |");
-        System.out.println("|  (4) Use the app                                                     |");
+        System.out.println("|  (4) Use the APP!                                                     |");
         System.out.println("|  (5) Exit                                                            |");
 
 
         // receives input from the user as a value that selects the option
         System.out.print("|Enter option number: ");
-        valueOption = input.nextInt();
+        int valueOption = Integer.parseInt(input.nextLine());
 
         // uses switch to determine what menu action should be carried out based on the user's input
         switch(valueOption) {
 
-        //case 1 takes in the observatory data
+            //case 1 takes in the observatory data
             case 1:
                 System.out.print("Enter observatory name: ");
                 String name = reply.nextLine();
                 System.out.print("Enter country name: ");
                 String countryName = reply.nextLine();
                 System.out.print("Enter year commenced: ");
-                int yearCommenced = reply.nextInt();
+                int yearCommenced = Integer.parseInt(reply.nextLine());
                 System.out.print("Enter area covered in km: ");
-                double area = reply.nextDouble();
-                System.out.println("Observatory added!");
+                double area = Double.parseDouble(reply.nextLine());
                 Galamsey_Project.Observatory obs = new Galamsey_Project.Observatory(name, countryName, yearCommenced, area);
-                observatories.add(obs.getName());
+//                System.out.println("Observatory added!");
                 break;
-
 
             //Case 2 takes in the details of the galamsey
             case  2:
                 //ensures that at least one observatory data has been inputted before galamsey can be added
-                if (observatories.isEmpty()) {
-                    System.out.println("Error: Cannot add galamsey when no observatory exists.");
+                if (data.getallObs().isEmpty()) {
+                    System.out.println("\n\nError: Cannot add galamsey when no observatory exists.\n\n");
+                    break;
 
                 } else {
-
-            }
-            else if(valueOption == 2){
-                if (observatories.isEmpty()){
-                System.out.println("Error: Cannot add galamsey when no observatory exists.");
-                break;
-                }
-                else {
-                    System.out.println(observatories.toString());
-
                     System.out.print("Enter longitude: ");
-                    double longitude = reply.nextDouble();
+                    double longitude = Double.parseDouble(reply.nextLine());
                     System.out.print("Enter latitude: ");
-                    double latitude = reply.nextDouble();
+                    double latitude = Double.parseDouble(reply.nextLine());
                     System.out.print("Enter vegetation colour (GREEN, YELLOW or BROWN): ");
                     String vegetationCol = reply.nextLine();
                     System.out.print("Enter year: ");
-                    int year = reply.nextInt();
-                    System.out.println("Which observatory collected this information? " + observatories.toString() + "?");
+                    int year = Integer.parseInt(reply.nextLine());
+                    System.out.println("Which observatory collected this information? " + data.getallObs().toString() + "?");
                     String obsName = reply.nextLine();
                     Galamsey_Project.Galamsey event = new Galamsey_Project.Galamsey(longitude, latitude,
                             Galamsey_Project.Galamsey.Vegetation_color.valueOf(vegetationCol.toUpperCase()), year, obsName);
-                }
-                break;
-
-
-            else if(valueOption == 3) {
-                System.out.println("The observatory with the largest average galamsey color value is: ");
-
-
-
-
-            if(valueOption == 2){
-                System.out.print("Enter longitude: ");
-                double longitude = reply.nextDouble();
-                System.out.print("Enter latitude: ");
-                double latitude = reply.nextDouble();
-                System.out.print("Enter vegetation colour (GREEN, YELLOW or BROWN): ");
-                String vegetationCol = reply.nextLine();
-                System.out.print("Enter year: ");
-                int year = reply.nextInt();
-                Galamsey_Project.Galamsey event = new Galamsey_Project.Galamsey(longitude, latitude,
-                        Galamsey_Project.Galamsey.Vegetation_color.valueOf(vegetationCol.toUpperCase()), year);
-
-                //case 3 provides statistics on galamsey
-            case 3:
-                    System.out.println("The observatory with the largest average galamsey color value is: ");
-
-
-                    System.out.println("Statistics on largest 'galamsey' ever is ");
                     break;
+                }
 
-
-            if(valueOption == 3){
-                System.out.println("The observatory with the largest average galamsey color value is: " );
-
+            //case 3 provides statistics on galamsey
+            case 3:
+                System.out.print("The observatory with the largest average galamsey color value is: ");
+                System.out.println(data.obsWithLargestColVal());
                 System.out.println("Statistics on largest 'galamsey' ever is ");
+                System.out.println("The following are the galamseys with a colour value greater than the input given.");
+                System.out.print("What colour value will that be? (1, 2, or 3): ");
+                int answer = Integer.parseInt(reply.nextLine());
+                System.out.println(data.allGalamseys(answer));
+                break;
 
             //case 4 allows the user to use the gui
             case 4:
+                System.out.println("JoBeans");
+                break;
 
 
-            }
-            else if(valueOption == 4){
-
-
-         //case 5 allows the user to exit
+            //case 5 allows the user to exit
             case 5:
                 System.out.println("Exiting...");
                 System.exit(0);
 
 
-        //default prints a message when an invalid number is typed
-                default:
-                    System.out.println("Invalid Option");
-                    break;
+            //default prints a message when an invalid number is typed
+            default:
+                System.out.println("Invalid Option");
+                break;
 
             }
 
@@ -147,4 +111,3 @@ public class MonitoringI_O {
 
 }
 
-}

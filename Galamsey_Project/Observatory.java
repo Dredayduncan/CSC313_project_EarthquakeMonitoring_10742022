@@ -51,8 +51,7 @@ public class Observatory {
         try {
 
             String query = "insert into Observatory values ('"+name+"','"+country+"','"+this.area_covered_km+"','"
-                    +startYear+"','"+0+"')";
-
+                    +startYear+"','"+0.00+"')";
 
             int status = st.executeUpdate(query);
         }catch(Exception e){

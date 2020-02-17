@@ -38,6 +38,13 @@ public class Controller implements Initializable {
     @FXML private TableColumn<TableContent, Double> area, average;
     @FXML private Label feedback;
 
+    //Create new ids for the galamsey table
+    @FXML private TableColumn<TableContent, String> veg_color, obs_name;
+    @FXML private TableColumn<TableContent, Integer> colValue, occurYear;
+    @FXML private TableColumn<TableContent, Double> longitude, latitude;
+    TableColumn<TableContent, Integer> column = new TableColumn<>();
+
+
     /**
      *
      * @param actionEvent
@@ -50,21 +57,39 @@ public class Controller implements Initializable {
      * @param actionEvent
      */
     public void galamtable(ActionEvent actionEvent){
-        nameObs.setText("Vegetation Color");
-        obsCountry.setText("Color Value");
-        startYear.setText("Longitude");
-        area.setText("Latitude");
-        average.setText("Record Year");
+        feedback.setText("Galamsies Table"); //Change feedback status
+
+        nameObs.setText("Vegetation Color"); //Change column name
+        nameObs.setId("veg_color");
+        nameObs.setCellValueFactory(new PropertyValueFactory<TableContent, String>("veg_color"));
+
+        obsCountry.setText("Observatory name");//Change column name
+        obsCountry.setId("obs_name");
+        obsCountry.setCellValueFactory(new PropertyValueFactory<TableContent, String>("galObs_name"));
+
+        startYear.setId("occurYear");
+        startYear.setText("Year of Occurrence");//Change column name
+        startYear.setCellValueFactory(new PropertyValueFactory<TableContent, Integer>("occurYear"));
+
+        area.setId("longitude");
+        area.setText("Longitude");//Change column name
+        area.setCellValueFactory(new PropertyValueFactory<TableContent, Double>("longi"));
+
+        average.setId("latitude");
+        average.setText("Latitude");//Change column name
+        average.setCellValueFactory(new PropertyValueFactory<TableContent, Double>("lat"));
+
+        //Change button names and color
         addObs.setText("Add Galamsey");
         obsAverage.setText("Remove Galamsey");
+        obsAverage.setStyle("-fx-background-color:  #ffcccb;");
 //        obsName.setPromptText("Vegetation Colour ");
 //        country.setPromptText("");
 //        year.setPromptText("");
 //        areakm.setPromptText("");
-        obsAverage.setStyle("-fx-background-color:  #ffcccb;");
-        TableColumn<TableContent, String> column = new TableColumn<>();
-        column.setText("Observatory Name");
-        column.setCellValueFactory(new PropertyValueFactory<TableContent, String>("average"));
+        column.setText("Color Value");
+        column.setId("col_value");
+        column.setCellValueFactory(new PropertyValueFactory<TableContent, Integer>("colValue"));
         tableView.getColumns().add(column);
         tableView.setItems(getGalsContent());
     }
@@ -96,6 +121,7 @@ public class Controller implements Initializable {
                     actionEvent3 -> feedback.setText("Observatories Table")), new KeyFrame(Duration.millis(1500),
                     actionEvent4 -> feedback.setStyle("-fx-background-color:  #85c6d4;")));
             animation.play();
+            tableView.getItems().clear();
             tableView.setItems(getObsContent());
         }
     }
@@ -132,11 +158,11 @@ public class Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        nameObs.setCellValueFactory(new PropertyValueFactory<TableContent, String>("name"));
+        nameObs.setCellValueFactory(new PropertyValueFactory<TableContent, String>("obsName"));
         obsCountry.setCellValueFactory(new PropertyValueFactory<TableContent, String>("country"));
         startYear.setCellValueFactory(new PropertyValueFactory<TableContent, Integer>("startYear"));
         area.setCellValueFactory(new PropertyValueFactory<TableContent, Double>("area"));
-        average.setCellValueFactory(new PropertyValueFactory<TableContent, Double>("average"));
+        average.setCellValueFactory(new PropertyValueFactory<TableContent, Double>("avg"));
 
         feedback.setTextFill(Color.BLACK);
         feedback.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -152,7 +178,7 @@ public class Controller implements Initializable {
     private ObservableList<TableContent> getObsContent(){
         ArrayList<String[]> allObs = data.getallObs();
         for (String[] p: allObs){
-            tableContents.add(new TableContent(p[0], p[1], Integer.parseInt(p[2]), Double.parseDouble(p[3]),
+            tableContents.add(new TableContent(p[0], p[1], Double.parseDouble(p[3]), Integer.parseInt(p[2]),
                     Double.parseDouble(p[4])));
         }
         return tableContents;
@@ -166,11 +192,10 @@ public class Controller implements Initializable {
     private ObservableList<TableContent> getGalsContent(){
         ArrayList<String[]> allObs = data.getallGal();
         for (String[] p: allObs){
-            tableContents.add(new TableContent(Double.parseDouble(p[2]), Double.parseDouble(p[3]), p[0],
+            tableContents.add(new TableContent(Double.parseDouble(p[2]), Double.parseDouble(p[3]), p[0], Integer.parseInt(p[1]),
                     Integer.parseInt(p[4]), p[5]));
         }
         return tableContents;
     }
-
 
 }

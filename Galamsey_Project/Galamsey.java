@@ -38,7 +38,6 @@ public class Galamsey {
         observName = obsName;
         veg_col_value = setColVal(vegetation_color);
         this.vegetation_color = vegetation_color;
-        this.obsName = obsName;
 
         //The following code registers and connect the class to the mysql Database
         try {
@@ -55,7 +54,7 @@ public class Galamsey {
         //The code below adds galamsey events to the Galamsey table in the mysql database
         try {
             String query = "insert into Galamsey values('"+this.vegetation_color+"','"+veg_col_value+"','"+position[0]
-                    +"','"+position[1]+"','"+occurYear+"','"+this.obsName+"')";
+                    +"','"+position[1]+"','"+occurYear+"','"+observName+"')";
 
             rs = st.executeUpdate(query);
         } catch (Exception e) {

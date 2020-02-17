@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 
 public class Monitoring {
+
     // instance variables for the mysql database connection
 
     private Connection conn;
@@ -24,7 +25,7 @@ public class Monitoring {
      * @return Does not return anything
      * This method is responsible for connecting the class to the mysql database.
      */
-    public void Monitoring(){
+    public Monitoring(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver"); //This accesses the driver necessary to access the mysql.
 
@@ -114,7 +115,7 @@ public class Monitoring {
      *
      * @return This returns a string of the observatory with the highest average color value
      */
-    public String largeAvgColObsVal(){
+    public String obsWithLargestColVal(){
         ArrayList<String> obsNames= new ArrayList<>(); // An empty list meant to be accumulated by observatory names for
         // a further query.
         try{
@@ -151,7 +152,8 @@ public class Monitoring {
     public ArrayList getallObs(){
         ArrayList<String[]> observatories = new ArrayList<>();
         try {
-            String query = "Select * from Observatories";
+            String query = "select * from Observatory ";
+
             rs = st.executeQuery(query);
 
             while (rs.next()) {
