@@ -85,27 +85,25 @@ public class Monitoring {
      * @return Does not return anything
      */
     public void updateAverageColValue(String obs_name){
-        ArrayList<Integer> colVals = new ArrayList<>(); //list of all color values from the galamsey class
-        int sum = 0; //Accumulator the sum of color values recorded in each galamsey event
-        try {
-            String query = "Select col_value from Galamsey where obs_name = " + obs_name; //Select all rows from the
-            //Galamsey table which were recorded by the stated observatory name.
-            rs = st.executeQuery(query); //Execute and return the query results.
-            while (rs.next()) //check if there are more items in the result set.
-                colVals.add(Integer.parseInt(rs.toString())); //add the results to the arraylist
-
-            for (int value: colVals)
-                sum += value; // increment the accumulator by the sum of numbers in the arraylist individually.
-
-        }catch(Exception e){
-            System.out.println("Error: " + e);
-        }
-        double avg_val =  sum/colVals.size();  // compute the average of the color values in the observatory
+//        double avg_val = 0;
+//
+//        try {
+//            //Select the average color value from the Galamsey table which were recorded by the stated observatory.
+//            String query = "Select avg(col_value) as col_value from Galamsey where obs_name = '"+obs_name+"'";
+//            rs = st.executeQuery(query); //Execute and return the query results.
+//
+//            while (rs.next()) //check if there are more items in the result set.
+//                avg_val = Double.parseDouble(rs.getString("col_value")); //add the average to the avg_val
+//
+//        }catch(Exception e){
+//            System.out.println("Error: " + e);
+//        }
 
         try {
             // This query updates the respective observatory average color column by the computed average in the DB.
-            String query = "update Observatory set averageColValue= " + avg_val + "where obs_name=" + obs_name;
-            rs = st.executeQuery(query); // This executes the query.
+            String query = "update Observatory set averageColValue= (select ifnull((Select avg(col_value)" +
+                    " as col_value from Galamsey where obs_name = '"+obs_name+"'), 0)) where obs_name='"+obs_name+"'";
+            int status = st.executeUpdate(query); // This executes the query.
         }catch(Exception e){
             System.out.println("Error: " + e);
         }

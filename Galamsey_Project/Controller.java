@@ -5,8 +5,7 @@ package CSC313_project_EarthquakeMonitoring_10742022.Galamsey_Project;
 
 //Import the necessary elements to combine the class with the 'Galamsey FX.fxml' file.
 import Galamsey_Project.Observatory;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,9 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
 
@@ -27,6 +24,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
+    @FXML
+    private AnchorPane house;
     //Initialize the instance variables using the id's and onActions(buttons) from the fxml file
     Monitoring data = new Monitoring();
     ObservableList<TableContent> tableContents = FXCollections.observableArrayList();
@@ -43,6 +42,7 @@ public class Controller implements Initializable {
     @FXML private TableColumn<TableContent, Integer> colValue, occurYear;
     @FXML private TableColumn<TableContent, Double> longitude, latitude;
     TableColumn<TableContent, Integer> column = new TableColumn<>();
+    TextField lati = new TextField();
 
 
     /**
@@ -50,14 +50,38 @@ public class Controller implements Initializable {
      * @param actionEvent
      */
     @FXML
-    public void obstable(ActionEvent actionEvent){}
+    public void obstable(ActionEvent actionEvent){
+        nameObs.setCellValueFactory(new PropertyValueFactory<TableContent, String>("obsName"));
+        obsCountry.setCellValueFactory(new PropertyValueFactory<TableContent, String>("country"));
+        startYear.setCellValueFactory(new PropertyValueFactory<TableContent, Integer>("startYear"));
+        area.setCellValueFactory(new PropertyValueFactory<TableContent, Double>("area"));
+        average.setCellValueFactory(new PropertyValueFactory<TableContent, Double>("avg"));
+        tableView.getColumns().remove(column);
+        house.getChildren().remove(lati);
+
+        obsName.setId("obsName");
+        country.setId("country");
+        year.setId("year");
+        areakm.setId("areakm");
+
+        obsName.setPromptText("Observatory name");
+        country.setPromptText("Name of country");
+        year.setPromptText("Year Commenced");
+        areakm.setPromptText("Area in km");
+
+        feedback.setTextFill(Color.BLACK);
+        feedback.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+        feedback.setText("Observatories Table");
+        tableView.getItems().clear();
+        tableView.setItems(getObsContent());
+    }
 
     /**
      *
      * @param actionEvent
      */
     public void galamtable(ActionEvent actionEvent){
-        feedback.setText("Galamsies Table"); //Change feedback status
+        feedback.setText("Galamseys Table"); //Change feedback status
 
         nameObs.setText("Vegetation Color"); //Change column name
         nameObs.setId("veg_color");
@@ -79,18 +103,52 @@ public class Controller implements Initializable {
         average.setText("Latitude");//Change column name
         average.setCellValueFactory(new PropertyValueFactory<TableContent, Double>("lat"));
 
+        //Change TextField ids
+        obsName.setId("vegColor");
+        country.setId("nameOfObs");
+        year.setId("yearOccur");
+        areakm.setId("long");
+        lati.setId("lat");
+
         //Change button names and color
         addObs.setText("Add Galamsey");
         obsAverage.setText("Remove Galamsey");
         obsAverage.setStyle("-fx-background-color:  #ffcccb;");
-//        obsName.setPromptText("Vegetation Colour ");
-//        country.setPromptText("");
-//        year.setPromptText("");
-//        areakm.setPromptText("");
+
+        //Changing prompt text in textfields
+        obsName.setPromptText("Vegetation Color: ");
+        country.setPromptText("Observatory Name: ");
+        year.setPromptText("Year: ");
+        areakm.setPromptText("Longitude: ");
+        lati.setPromptText("Latitude: ");
+
+        //Initialize new column
         column.setText("Color Value");
         column.setId("col_value");
         column.setCellValueFactory(new PropertyValueFactory<TableContent, Integer>("colValue"));
         tableView.getColumns().add(column);
+
+        //Change textfield layouts
+        obsName.setLayoutX(18.0);
+        obsName.setPrefWidth(116.0);
+
+        country.setLayoutX(145.0);
+        country.setPrefWidth(129.0);
+
+        year.setLayoutX(283.0);
+        year.setPrefWidth(131.0);
+
+        areakm.setLayoutX(422.0);
+        areakm.setPrefWidth(121.0);
+
+        lati.setLayoutX(554.0);
+        lati.setLayoutY(596.0);
+        lati.setPrefWidth(121.0);
+
+        house.getChildren().add(lati);
+
+
+        tableView.getItems().clear();
         tableView.setItems(getGalsContent());
     }
 
@@ -147,7 +205,13 @@ public class Controller implements Initializable {
      *
      * @param actionEvent
      */
-    public void updateAvg(ActionEvent actionEvent){}
+    public void updateAvg(ActionEvent actionEvent){
+        ObservableList<TableContent> obs = tableView.getSelectionModel().getSelectedItems();
+        data.updateAverageColValue(obs.get(0).getObsName().toString());
+        tableView.getItems().clear();
+        tableView.setItems(getObsContent());
+
+    }
 
 
     /**

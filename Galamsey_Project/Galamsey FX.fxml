@@ -12,7 +12,7 @@
 
 <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="647.0" prefWidth="1009.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CSC313_project_EarthquakeMonitoring_10742022.Galamsey_Project.Controller">
     <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="648.0" prefWidth="1009.0" style="-fx-background-color: #0e2f44;">
+        <AnchorPane fx:id="house" minHeight="0.0" minWidth="0.0" prefHeight="648.0" prefWidth="1009.0" style="-fx-background-color: #0e2f44;">
             <children>
                 <TableView fx:id="tableView" blendMode="COLOR_DODGE" layoutX="2.0" layoutY="51.0" prefHeight="536.0" prefWidth="986.0" style="-fx-background-color: #FFFFFF;">
                     <columns>

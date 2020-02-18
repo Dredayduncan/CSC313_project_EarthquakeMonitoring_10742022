@@ -1,5 +1,4 @@
-package Galamsey_Project;
-import CSC313_project_EarthquakeMonitoring_10742022.Galamsey_Project.Monitoring;
+package CSC313_project_EarthquakeMonitoring_10742022.Galamsey_Project;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -88,6 +87,8 @@ public class MonitoringI_O {
             //case 4 allows the user to use the gui
             case 4:
                 System.out.println("JoBeans");
+//                GalaGUI gui = new GalaGUI();
+//                gui.run();
                 break;
 
 
