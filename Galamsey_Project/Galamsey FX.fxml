@@ -33,7 +33,7 @@
                 <TextField fx:id="year" layoutX="357.0" layoutY="596.0" promptText="Year Commenced:" />
                 <TextField fx:id="areakm" layoutX="529.0" layoutY="596.0" promptText="Area in km:" />
                 <Button fx:id="addObs" layoutX="711.0" layoutY="595.0" mnemonicParsing="false" onAction="#obsInsert" prefHeight="28.0" prefWidth="111.0" style="-fx-background-color: #85c6d4;" text="Add Observatory" wrapText="true" />
-                <Button fx:id="obsAverage" layoutX="830.0" layoutY="595.0" mnemonicParsing="false" onAction="#updateAvg" prefHeight="28.0" prefWidth="129.0" style="-fx-background-color: #a0db8e;" text="Update Observatory" wrapText="true" />
+                <Button fx:id="obsAverage" layoutX="830.0" layoutY="595.0" mnemonicParsing="false" onAction="#updateAvg" prefHeight="28.0" prefWidth="129.0" style="-fx-background-color: #a0db8e;" text="Update Average" wrapText="true" />
                 <MenuButton fx:id="fromQuery" layoutX="575.0" layoutY="4.0" mnemonicParsing="false" onAction="#from" prefHeight="27.0" prefWidth="110.0" text="Column">
                     <items>
                         <MenuItem mnemonicParsing="false" text="Action 1" />

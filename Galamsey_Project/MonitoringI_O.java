@@ -1,10 +1,12 @@
+/**
+ * @author Nana Osei Somuah, Andrew Duncan, Caleb Otchi, Stephen Torku
+ */
 package CSC313_project_EarthquakeMonitoring_10742022.Galamsey_Project;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * @author Nana Osei Somuah, Andrew Duncan, Caleb Otchi, Stephen Torku
+ * This is the main class that should be run to test and the entire program
  */
 public class MonitoringI_O {
 
@@ -46,12 +48,12 @@ public class MonitoringI_O {
                 int yearCommenced = Integer.parseInt(reply.nextLine());
                 System.out.print("Enter area covered in km: ");
                 double area = Double.parseDouble(reply.nextLine());
-                Galamsey_Project.Observatory obs = new Galamsey_Project.Observatory(name, countryName, yearCommenced, area);
-//                System.out.println("Observatory added!");
+                Observatory obs = new Observatory(name, countryName, yearCommenced, area);
+                System.out.println("Observatory added!");
                 break;
 
             //Case 2 takes in the details of the galamsey
-            case  2:
+            case 2:
                 //ensures that at least one observatory data has been inputted before galamsey can be added
                 if (data.getallObs().isEmpty()) {
                     System.out.println("\n\nError: Cannot add galamsey when no observatory exists.\n\n");
@@ -66,18 +68,18 @@ public class MonitoringI_O {
                     String vegetationCol = reply.nextLine();
                     System.out.print("Enter year: ");
                     int year = Integer.parseInt(reply.nextLine());
-                    System.out.println("Which observatory collected this information? " + data.getallObs().toString() + "?");
+                    System.out.println("Which observatory collected this information?( " + data.ObsNames() + ")?");
                     String obsName = reply.nextLine();
-                    Galamsey_Project.Galamsey event = new Galamsey_Project.Galamsey(longitude, latitude,
-                            Galamsey_Project.Galamsey.Vegetation_color.valueOf(vegetationCol.toUpperCase()), year, obsName);
+                    Galamsey event = new Galamsey(longitude, latitude,
+                            Galamsey.Vegetation_color.valueOf(vegetationCol.toUpperCase()), year, obsName);
+                    System.out.println("Galamsey has been added.");
                     break;
                 }
 
             //case 3 provides statistics on galamsey
             case 3:
-                System.out.print("The observatory with the largest average galamsey color value is: ");
+                System.out.println("The observatory with the largest average galamsey color value is: ");
                 System.out.println(data.obsWithLargestColVal());
-                System.out.println("Statistics on largest 'galamsey' ever is ");
                 System.out.println("The following are the galamseys with a colour value greater than the input given.");
                 System.out.print("What colour value will that be? (1, 2, or 3): ");
                 int answer = Integer.parseInt(reply.nextLine());
@@ -87,8 +89,6 @@ public class MonitoringI_O {
             //case 4 allows the user to use the gui
             case 4:
                 System.out.println("JoBeans");
-//                GalaGUI gui = new GalaGUI();
-//                gui.run();
                 break;
 
 
@@ -96,6 +96,7 @@ public class MonitoringI_O {
             case 5:
                 System.out.println("Exiting...");
                 System.exit(0);
+                break;
 
 
             //default prints a message when an invalid number is typed

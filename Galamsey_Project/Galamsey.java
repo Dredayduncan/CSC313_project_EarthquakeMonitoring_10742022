@@ -1,4 +1,4 @@
-package Galamsey_Project;
+package CSC313_project_EarthquakeMonitoring_10742022.Galamsey_Project;
 import java.sql.*;
 /**
  * @author Stephen Torku

@@ -5,6 +5,7 @@
  */
 package CSC313_project_EarthquakeMonitoring_10742022.Galamsey_Project;
 
+//import Classes for table view input
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -44,10 +45,18 @@ public class TableContent {
     colValue = new SimpleIntegerProperty(col_val);
     }
 
+    /**
+     *
+     * @return Return the String of the Observatory name.
+     */
     public String getObsName() {
         return obsName.get();
     }
 
+    /**
+     *
+     * @return Return the table view property version of the Observatory name.
+     */
     public SimpleStringProperty obsNameProperty() {
         return obsName;
     }
@@ -56,10 +65,18 @@ public class TableContent {
         this.obsName.set(obsName);
     }
 
+    /**
+     *
+     * @return Return the String of the country.
+     */
     public String getCountry() {
         return country.get();
     }
 
+    /**
+     *
+     * @return Return the table view property version of the country.
+     */
     public SimpleStringProperty countryProperty() {
         return country;
     }
@@ -68,10 +85,18 @@ public class TableContent {
         this.country.set(country);
     }
 
+    /**
+     *
+     * @return Return the double of the area of the observatory.
+     */
     public double getArea() {
         return area.get();
     }
 
+    /**
+     *
+     * @return Return the table view property version of the country.
+     */
     public SimpleDoubleProperty areaProperty() {
         return area;
     }
@@ -80,10 +105,18 @@ public class TableContent {
         this.area.set(area);
     }
 
+    /**
+     *
+     * @return Return the double of the average.
+     */
     public double getAvg() {
         return avg.get();
     }
 
+    /**
+     *
+     * @return Return the table view property version of the average.
+     */
     public SimpleDoubleProperty avgProperty() {
         return avg;
     }
@@ -92,10 +125,18 @@ public class TableContent {
         this.avg.set(avg);
     }
 
+    /**
+     *
+     * @return Return the int of the year.
+     */
     public int getStartYear() {
         return startYear.get();
     }
 
+    /**
+     *
+     * @return Return the table view property version of the year it started.
+     */
     public SimpleIntegerProperty startYearProperty() {
         return startYear;
     }
@@ -104,10 +145,18 @@ public class TableContent {
         this.startYear.set(startYear);
     }
 
+    /**
+     *
+     * @return Return the double of the average.
+     */
     public double getLongi() {
         return longi.get();
     }
 
+    /**
+     *
+     * @return Return the table view property version of the Galamsey longitude.
+     */
     public SimpleDoubleProperty longiProperty() {
         return longi;
     }
@@ -116,10 +165,18 @@ public class TableContent {
         this.longi.set(longi);
     }
 
+    /**
+     *
+     * @return Return the double of the Galamsey latitude.
+     */
     public double getLat() {
         return lat.get();
     }
 
+    /**
+     *
+     * @return Return the table view property version of the Galamsey latitude.
+     */
     public SimpleDoubleProperty latProperty() {
         return lat;
     }
@@ -128,10 +185,18 @@ public class TableContent {
         this.lat.set(lat);
     }
 
+    /**
+     *
+     * @return Return the String of the Galamsey vegetation color.
+     */
     public String getVeg_color() {
         return veg_color.get();
     }
 
+    /**
+     *
+     * @return Return the table view property of the Galamsey vegetation color.
+     */
     public SimpleStringProperty veg_colorProperty() {
         return veg_color;
     }
@@ -140,10 +205,18 @@ public class TableContent {
         this.veg_color.set(veg_color);
     }
 
+    /**
+     *
+     * @return Return the String of the Observatory that recorded the event.
+     */
     public String getGalObs_name() {
         return galObs_name.get();
     }
 
+    /**
+     *
+     * @return Return the table view property version of the Observatory that recorded the event.
+     */
     public SimpleStringProperty galObs_nameProperty() {
         return galObs_name;
     }
@@ -152,10 +225,18 @@ public class TableContent {
         this.galObs_name.set(galObs_name);
     }
 
+    /**
+     *
+     * @return Return an integer of the year of occurrence.
+     */
     public int getOccurYear() {
         return occurYear.get();
     }
 
+    /**
+     *
+     * @return Return the table view property version of the year of occurrence.
+     */
     public SimpleIntegerProperty occurYearProperty() {
         return occurYear;
     }
@@ -164,10 +245,18 @@ public class TableContent {
         this.occurYear.set(occurYear);
     }
 
+    /**
+     *
+     * @return Return the int of the color value.
+     */
     public int getColValue() {
         return colValue.get();
     }
 
+    /**
+     *
+     * @return Return the table view property version of the color value.
+     */
     public SimpleIntegerProperty colValueProperty() {
         return colValue;
     }

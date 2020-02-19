@@ -1,11 +1,11 @@
 package CSC313_project_EarthquakeMonitoring_10742022.Galamsey_Project;
-// package Galamsey_Project
 /**
  * @author Andrew Duncan
  * This class is meant to gather various data from the all galamsey events recorded
  */
 
 // Import the sql and Arraylist packages to use for later use.
+import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -17,9 +17,6 @@ public class Monitoring {
     private Connection conn;
     private Statement st;
     private ResultSet rs;
-
-
-    ArrayList<String> galamseys = new ArrayList<>(); //List of all the Galamseys recorded in the database.
 
     /**
      * @return Does not return anything
@@ -60,23 +57,29 @@ public class Monitoring {
      * @return Return a list of galamsey events which recorded color values greater than the value.
      */
     public String allGalamseys(int colValue){
+        String all= "";
         if (colValue > 3 && colValue < 0) // Ensure that the user inputs a valid color value
             return "Input is higher than 3 or lower than 0.";
 
         try {
             //Generate, execute and return the largest value recorded by a galamsey
             String query = "Select * from Galamsey where col_value > " + colValue; //This query gets the rows with values
-            // greater tham the stated color value.
+            // greater than the stated color value.
             rs = st.executeQuery(query); //Execute and return the results of the query
 
             // while loop to go through the result set generated from the query result and add to a list of all recorded
             // galamsey events
             while (rs.next()) //checks for whether there is a next item in the set.
-                galamseys.add(rs.toString()); //add each result to the list
+                all += "Vegetation color: " + rs.getString("veg_color")
+                        + "\nColor value: " + rs.getString("col_value")
+                        + "\nLongitude: " + rs.getString("longitude")
+                        + "\nLatitude: " + rs.getString("latitude")
+                        + "\nYear of Occurence: " + rs.getString("year")
+                        + "\n Recording Observatory: " + rs.getString("obs_name") + "\n";
         }catch(Exception e){
             System.out.println("Error: " + e);
         }
-        return galamseys.toString();
+        return all;
     }
 
     /**
@@ -85,20 +88,6 @@ public class Monitoring {
      * @return Does not return anything
      */
     public void updateAverageColValue(String obs_name){
-//        double avg_val = 0;
-//
-//        try {
-//            //Select the average color value from the Galamsey table which were recorded by the stated observatory.
-//            String query = "Select avg(col_value) as col_value from Galamsey where obs_name = '"+obs_name+"'";
-//            rs = st.executeQuery(query); //Execute and return the query results.
-//
-//            while (rs.next()) //check if there are more items in the result set.
-//                avg_val = Double.parseDouble(rs.getString("col_value")); //add the average to the avg_val
-//
-//        }catch(Exception e){
-//            System.out.println("Error: " + e);
-//        }
-
         try {
             // This query updates the respective observatory average color column by the computed average in the DB.
             String query = "update Observatory set averageColValue= (select ifnull((Select avg(col_value)" +
@@ -131,34 +120,42 @@ public class Monitoring {
         String observatory = "";
         try{
             String query = "Select * from Observatory where averageColValue = " +
-                    "(select max(averageColValue from Observatory))"; //This query selects the observatory with the
+                    "(select max(averageColValue) from Observatory)"; //This query selects the observatory with the
             // highest average color value in the DB.
             rs = st.executeQuery(query); // Execute the query
 
-            //Append the various details of the result to the "observatory" string
-            observatory += "Observatory name is: " + rs.getString("obs_name")
-                    + "\n Located in: " + rs.getString("country")
-                    + "\n Area of: " + rs.getString("area_in_sqkm") + " in square kilometres"
-                    + "\n Began in: " + rs.getString("startYear")
-                    + "\n Average color value of: " + rs.getString("averageColValue");
+            while (rs.next()) {
+                //Append the various details of the result to the "observatory" string
+                observatory += "Observatory name is: " + rs.getString("obs_name")
+                        + "\nLocated in: " + rs.getString("country")
+                        + "\nArea of: " + rs.getString("area_in_sqkm") + " in square kilometres"
+                        + "\nBegan in: " + rs.getString("startYear")
+                        + "\nAverage color value of: " + rs.getString("averageColValue") + "\n";
+            }
+
         }catch(Exception e) {
             System.out.println("Error: " + e);
         }
         return observatory;
     }
 
-    public ArrayList getallObs(){
+    /**
+     *
+     * @return Returns an arraylist of observatories in the database
+     */
+    public ArrayList<String[]> getallObs(){
         ArrayList<String[]> observatories = new ArrayList<>();
         try {
-            String query = "select * from Observatory ";
+            String query = "select * from Observatory "; //Selects all data in the Observatory table
 
-            rs = st.executeQuery(query);
+            rs = st.executeQuery(query); //Execute the query.
 
+            //Store the resultant data into an String array which is added to the Arraylist.
             while (rs.next()) {
                 String[] recs = {rs.getString("obs_name"), rs.getString("country"),
                         rs.getString("startYear"), rs.getString("area_in_sqkm"),
                         rs.getString("averageColValue")};
-                observatories.add(recs);
+                observatories.add(recs); //Add the resultant data
             }
         }catch (Exception e){
             System.out.println("Error: " + e);
@@ -166,22 +163,65 @@ public class Monitoring {
         return observatories;
     }
 
-    public ArrayList getallGal(){
+    /**
+     *
+     * @return Returns an arraylist of galamseys in the database
+     */
+    public ArrayList<String[]> getallGal(){
         ArrayList<String[]> gals = new ArrayList<>();
         try {
-            String query = "Select * from Galamsey";
-            rs = st.executeQuery(query);
+            String query = "Select * from Galamsey"; //Select all Galamseys from the database
+            rs = st.executeQuery(query); //Execute the query
 
             while (rs.next()) {
+                // Store the data in the respective columns in a string array
                 String[] recs = {rs.getString("veg_color"), rs.getString("col_value"),
                         rs.getString("longitude"), rs.getString("latitude"),
                         rs.getString("year"), rs.getString("obs_name")};
-                gals.add(recs);
+                gals.add(recs); //Add the result to an arraylist.
             }
         }catch (Exception e){
             System.out.println("Error: " + e);
         }
         return gals;
+    }
+
+    /**
+     *
+     * @param name Name of the Galamsey.
+     * @param longitude Longitude of the Galamsey.
+     * @param latitude Latitude of the Galamsey.
+     * This method removes a galamsey that has matching credentials as the parameters from the database.
+     */
+    public void removeGal(String name, Double longitude, Double latitude){
+        try {
+            String query = "delete from Galamsey where obs_name = '"+name+"' and longitude = '"+longitude+"' and" +
+                    " latitude = '"+latitude+"'"; //delete the galamsey with the respective parameters from the DB
+            int status = st.executeUpdate(query); // Execute the query.
+
+        }catch (Exception e){
+            System.out.println("Error: " + e);
+        }
+    }
+
+    /**
+     *
+     * @return Returns a String of Observatories by name
+     */
+    public String ObsNames(){
+        String names = "";
+        ArrayList<String[]> data = getallObs(); //Gets all observatories from the database and stores them in an arraylist.
+
+        /*
+        Loop through the arraylist and append the names of each observatory to the names variable.
+         */
+        for (int i = 0; i < data.size(); i++){
+            if (i == data.size()-1)
+                names += data.get(i)[0] + ". ";
+            else
+                names += data.get(i)[0] + ", ";
+        }
+        return names;
     }
 
 }
