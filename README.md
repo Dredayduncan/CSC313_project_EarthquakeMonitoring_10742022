@@ -1,8 +1,9 @@
-# README File For ICP Java Project 1
-This java project records occurrences of galamsey from Observatories all over Africa and stores the data in a databse system.
+# README File For The Earthquake Monitoring Program
+This program records occurrences of Galamsey (Illegal mining) events from Observatories in many locations and stores the data in a database created with MySQL.
 
 ## Instructions On How To Run The Program
 -To run the program you will have to run the MonitoringI_O class
+-To run the GUI, you will have to run the GalaGui class
 
 ### What To Install
 -Javafx jdk
