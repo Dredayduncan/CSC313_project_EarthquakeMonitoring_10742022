@@ -22,11 +22,11 @@ public class Galamsey {
 
     /**
      *
-     * @param longitude
-     * @param latitude
-     * @param vegetation_color
-     * @param year
-     * @param obsName
+     * @param longitude The longitudinal position of the location.
+     * @param latitude The latitudinal position of the location.
+     * @param vegetation_color The vegetation color at the event.
+     * @param year year of occurrence of the Galamsey event
+     * @param obsName The name of the observatory that recorded the event
      *
      * This creates an object which stores the location where there may be galamsey, the vegetation colour at that location
      * and the year in which this occurs
@@ -64,7 +64,7 @@ public class Galamsey {
 
     /**
      *
-     * @param vegCol
+     * @param vegCol The vegetation color at the Galamsey event.
      * @return
      * Determines the vegetation colour value based on the vegetation colour
      * 1 = green
@@ -139,8 +139,8 @@ public class Galamsey {
 
     /**
      *
-     * @param longitude
-     * @param latitude
+     * @param longitude longitudinal position of the location.
+     * @param latitude latitudinal position of the location.
      * sets the latitude and longitude of the galamsey occurence
      */
     public void setPosition(double longitude,double latitude){

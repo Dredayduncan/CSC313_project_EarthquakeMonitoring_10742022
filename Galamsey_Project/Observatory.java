@@ -173,7 +173,7 @@ public class Observatory {
 
     /**
      *
-     * @param colValue
+     * @param colValue The threshold to filter the database with to obtain Galamsey events greater than.
      * @return returns a toString all the galamsey recorded by an observatory with a color value greater than a given number
      */
     public String allGalamseys(int colValue){
