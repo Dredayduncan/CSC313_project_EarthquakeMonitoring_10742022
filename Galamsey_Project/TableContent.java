@@ -23,6 +23,12 @@ public class TableContent {
     SimpleIntegerProperty occurYear, colValue;
 
     /**
+     *
+     * @param observatory_name The name of the observatory
+     * @param country_name The country the observatory can be located.
+     * @param area_covered_km The area occupied by the observatory.
+     * @param year_commenced The year the observatory started operation.
+     * @param average The average color value of the observatory
      * This contructor is responsible for receiving and converting the details of the Observatory class
      */
     public TableContent(String observatory_name, String country_name, double area_covered_km, int year_commenced, double average){
@@ -34,7 +40,13 @@ public class TableContent {
     }
 
     /**
-     * This contructor is responsible for receiving and converting the details of the Galamsey class
+     *
+     * @param longitude The longitudinal position of the Galamsey.
+     * @param latitude The latitudinal position of the Galamsey.
+     * @param vegetation_color The vegetation color of the vegetation at the location.
+     * @param col_val The color value associated with the vegetation color at the location.
+     * @param year The year the event was recorded.
+     * @param obsName The name of the observatory that recorded the event.
      */
     public TableContent(double longitude, double latitude, String vegetation_color, int col_val, int year, String obsName){
     longi = new SimpleDoubleProperty(longitude);

@@ -19,7 +19,6 @@ public class Monitoring {
     private ResultSet rs;
 
     /**
-     * @return Does not return anything
      * This method is responsible for connecting the class to the mysql database.
      */
     public Monitoring(){
@@ -85,7 +84,6 @@ public class Monitoring {
     /**
      *
      * @param obs_name Observatory name to specify which observatory average value column to update in the database
-     * @return Does not return anything
      */
     public void updateAverageColValue(String obs_name){
         try {
