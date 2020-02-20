@@ -27,8 +27,7 @@ public class MonitoringI_O {
         System.out.println("|  (3) Provide monitoring statistics on largest average 'galamsey',    |");
         System.out.println("|      largest 'galamsey' ever and all 'galamsey' with colour          |");
         System.out.println("|      value greater than given number                                 |");
-        System.out.println("|  (4) Use the APP!                                                     |");
-        System.out.println("|  (5) Exit                                                            |");
+        System.out.println("|  (4) Exit                                                            |");
 
 
         // receives input from the user as a value that selects the option
@@ -86,14 +85,8 @@ public class MonitoringI_O {
                 System.out.println(data.allGalamseys(answer));
                 break;
 
-            //case 4 allows the user to use the gui
+            //case 4 allows the user to exit
             case 4:
-                System.out.println("JoBeans");
-                break;
-
-
-            //case 5 allows the user to exit
-            case 5:
                 System.out.println("Exiting...");
                 System.exit(0);
                 break;

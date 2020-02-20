@@ -325,23 +325,6 @@ public class Controller implements Initializable {
             tableView.setItems(getObsContent());
         }
     }
-    /**
-     *
-     * @param actionEvent
-     */
-    public void search(ActionEvent actionEvent){}
-
-    /**
-     *
-     * @param actionEvent
-     */
-    public void from(ActionEvent actionEvent){}
-
-    /**
-     *
-     * @param actionEvent
-     */
-    public void operations(ActionEvent actionEvent){}
 
     /**
      *
